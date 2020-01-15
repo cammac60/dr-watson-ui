@@ -93,8 +93,7 @@ describe('ChatBox component', () => {
       return Promise.resolve({ message: 'My name is Dr. Watson.  How are you today?' });
     });
 
-    wrapper.instance().setState({ message: 'Hi there.' });
-    await wrapper.instance().messageChatBot();
+    await wrapper.instance().messageChatBot('Hi there.');
 
     expect(postMessage).toHaveBeenCalledWith('Hi there.')
   });
