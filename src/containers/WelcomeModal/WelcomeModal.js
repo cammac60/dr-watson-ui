@@ -17,7 +17,11 @@ export class WelcomeModal extends Component {
   }
 
   handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value, error: '' });
+    const { firstName, lastName, feeling, error } = this.state;
+    this.setState({ [e.target.name]: e.target.value });
+    if (firstName, lastName, feeling) {
+      this.setState({error: ''})
+    }
   }
 
   handleSubmit = e => {
