@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { App, mapStateToProps, mapDispatchToProps } from './App';
-import { removeUser, hasErrored } from '../../actions';
+import { removeUser, hasErrored, createMessage, removeMessage } from '../../actions';
 import { endConversation } from '../../apiCalls';
 
 jest.mock('../../apiCalls');
@@ -13,9 +13,9 @@ describe('App component', () => {
 
   beforeEach(() => {
     const mockUser = {
-      id: 1568665187737, 
-      firstName: "Travis", 
-      lastName: "Rollins", 
+      id: 1568665187737,
+      firstName: "Travis",
+      lastName: "Rollins",
       feeling: "tired"
     };
 
@@ -62,9 +62,9 @@ describe('App component', () => {
 describe('mapStateToProps', () => {
   it('should return an object with the user information', () => {
     const mockUser = {
-      id: 1568665187737, 
-      firstName: "Travis", 
-      lastName: "Rollins", 
+      id: 1568665187737,
+      firstName: "Travis",
+      lastName: "Rollins",
       feeling: "tired"
     };
 
@@ -77,11 +77,12 @@ describe('mapStateToProps', () => {
       errorMsg: ''
     };
     const expected = {
-      user: mockUser
-    }
+      user: mockUser,
+      messages: mockState.messages
+    };
 
     const mappedProps = mapStateToProps(mockState);
-    
+
     expect(mappedProps).toEqual(expected);
   });
 });
@@ -106,4 +107,25 @@ describe('mapDispatchToProps', () => {
 
     expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
   });
+
+  it('Should dispatch with a createMessage action when createMessage is called', () => {
+    const mockDispatch = jest.fn();
+    const actionToDispatch = createMessage('message content');
+
+    const mappedProps = mapDispatchToProps(mockDispatch);
+    mappedProps.createMessage('message content');
+
+    expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
+  });
+
+  it('Should dispatch with a removeMessage action when removeMessage is called', () => {
+    const mockDispatch = jest.fn();
+    const actionToDispatch = removeMessage();
+
+    const mappedProps = mapDispatchToProps(mockDispatch);
+    mappedProps.removeMessage();
+
+    expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
+  });
+
 });
