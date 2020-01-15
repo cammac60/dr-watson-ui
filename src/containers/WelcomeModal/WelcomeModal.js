@@ -17,17 +17,17 @@ export class WelcomeModal extends Component {
   }
 
   handleChange = e => {
-    const { firstName, lastName, feeling, error } = this.state;
+    const { firstName, lastName, feeling } = this.state;
     this.setState({ [e.target.name]: e.target.value });
-    if (firstName, lastName, feeling) {
+    if (firstName && lastName && feeling) {
       this.setState({error: ''})
     }
   }
 
   handleSubmit = e => {
-    const { firstName, lastName, feeling, error } = this.state;
+    const { firstName, lastName, feeling } = this.state;
     e.preventDefault();
-    if (firstName, lastName, feeling) {
+    if (firstName && lastName && feeling) {
       this.props.createUser({
         id: Date.now(),
         firstName,
