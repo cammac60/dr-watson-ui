@@ -17,7 +17,6 @@ export const createMessage = message => ({
   message
 });
 
-export const removeMessage = message => ({
+export const removeMessage = () => ({
   type: 'REMOVE_MESSAGE',
-  message
-})
+});
