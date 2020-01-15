@@ -12,7 +12,7 @@ export const hasErrored = errorMsg => ({
   errorMsg
 });
 
-export const addMessage = message => ({
+export const createMessage = message => ({
   type: 'ADD_MESSAGE',
   message
 });
